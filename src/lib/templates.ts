@@ -17,9 +17,19 @@ export type BookingDetails = {
   message?: string;
 };
 
+export type ContactPax = {
+  adults: number;
+  children: number;
+};
+
 export type ContactComposeInput = {
   intent: ContactIntent;
   activities?: string[];
+  /** ISO date YYYY-MM-DD */
+  travelDate?: string;
+  /** Optional end date for multi-day trips */
+  travelEndDate?: string;
+  pax?: ContactPax;
   notes?: string;
   details?: BookingDetails;
 };
@@ -30,10 +40,40 @@ const INTENT_LABEL: Record<ContactIntent, string> = {
   other: "Other",
 };
 
+function formatDisplayDate(iso?: string): string {
+  if (!iso) return "____";
+  const d = new Date(`${iso}T12:00:00`);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+function formatDateRange(start?: string, end?: string): string {
+  if (!start) return "____";
+  if (!end || end === start) return formatDisplayDate(start);
+  return `${formatDisplayDate(start)} → ${formatDisplayDate(end)}`;
+}
+
+function formatPax(pax?: ContactPax): string {
+  if (!pax) return "____";
+  const parts: string[] = [];
+  if (pax.adults > 0) parts.push(`${pax.adults} adult${pax.adults === 1 ? "" : "s"}`);
+  if (pax.children > 0) parts.push(`${pax.children} child${pax.children === 1 ? "" : "ren"}`);
+  return parts.length ? parts.join(", ") : "____";
+}
+
 export function buildContactMessage(input: ContactComposeInput): string {
-  const { intent, activities = [], notes, details = {} } = input;
+  const { intent, activities = [], travelDate, travelEndDate, pax, notes, details = {} } = input;
   const activityLine =
     activities.length > 0 ? activities.join(", ") : "Not specified yet";
+  const datesLine =
+    details.dates?.trim() ||
+    formatDateRange(travelDate, travelEndDate);
+  const guestsLine = details.guests?.trim() || formatPax(pax);
 
   if (intent === "other") {
     return [
@@ -60,9 +100,9 @@ export function buildContactMessage(input: ContactComposeInput): string {
     `• Activities / experiences: ${activityLine}`,
     details.tourName ? `• Tour: ${details.tourName}` : null,
     details.tourUrl ? `• Link: ${details.tourUrl}` : null,
-    `• Preferred dates: ${details.dates ?? "____"}`,
-    `• Guests (adults/children): ${details.guests ?? "____"}`,
-    `• Full name: ${details.name ?? "____"}`,
+    `• Preferred dates: ${datesLine}`,
+    `• Pax: ${guestsLine}`,
+    details.name ? `• Full name: ${details.name}` : null,
     notes ? `• Notes: ${notes}` : null,
     ``,
     `Please share availability and next steps. Thank you!`,
