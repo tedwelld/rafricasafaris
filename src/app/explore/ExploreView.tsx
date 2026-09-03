@@ -304,7 +304,8 @@ export function ExploreView({ initialTab }: { initialTab: ExploreTab }) {
           {activities.map((a) => (
             <div
               key={a.slug}
-              className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-line shadow-sm transition-shadow hover:shadow-md"
+              id={a.slug}
+              className="group relative aspect-[4/3] scroll-mt-28 overflow-hidden rounded-2xl border border-line shadow-sm transition-shadow hover:shadow-md"
             >
               <Photo
                 src={a.image}

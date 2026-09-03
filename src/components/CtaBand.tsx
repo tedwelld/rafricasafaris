@@ -1,7 +1,6 @@
-import { Pi } from "@/components/Pi";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { EmailButton, WhatsAppButton } from "@/components/WhatsAppButton";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export function CtaBand({
@@ -20,9 +19,7 @@ export function CtaBand({
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <ButtonLink href="/explore?view=tours">Browse tours</ButtonLink>
           <WhatsAppButton variant="whatsapp" />
-          <ButtonLink href="/contact" variant="secondary">
-            <Pi name="pi-envelope" className="text-base" /> Email enquiry
-          </ButtonLink>
+          <EmailButton label="Email enquiry" />
         </div>
         <div className="mt-10 border-t border-line/40 pt-8">
           <NewsletterSignup variant="cta" className="mx-auto max-w-md" />

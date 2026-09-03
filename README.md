@@ -14,6 +14,15 @@ npm run dev
 
 Lead guide: **Blessed Gundo** (`public/images/guides/blessed-gundo.jpg`).
 
+## Sitemap & SEO
+
+| URL | File |
+|-----|------|
+| `/sitemap.xml` | [`src/app/sitemap.ts`](src/app/sitemap.ts) + [`src/lib/sitemap.ts`](src/lib/sitemap.ts) |
+| `/robots.txt` | [`src/app/robots.ts`](src/app/robots.ts) |
+| `/site-map` | Human-readable HTML index ([`src/app/site-map/page.tsx`](src/app/site-map/page.tsx)) |
+
+Set `NEXT_PUBLIC_SITE_URL` in `.env.local` (defaults to `siteConfig.url`).
 
 ## Tech stack
 

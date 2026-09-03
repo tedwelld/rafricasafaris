@@ -3,7 +3,7 @@ import { Pi } from "@/components/Pi";
 import { Logo } from "@/components/Logo";
 import { siteConfig } from "@/lib/siteConfig";
 import { Container } from "@/components/ui/Container";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { EmailButton, WhatsAppButton } from "@/components/WhatsAppButton";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export function Footer() {
@@ -31,6 +31,16 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/site-map" className="text-ink-soft hover:text-gold-dark">
+                Site map
+              </Link>
+            </li>
+            <li>
+              <a href="/sitemap.xml" className="text-ink-soft hover:text-gold-dark">
+                XML sitemap
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -60,8 +70,9 @@ export function Footer() {
           <div className="mt-6">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground">Ready to go?</h4>
             <p className="mt-2 text-sm text-ink-soft">We reply fast.</p>
-            <div className="mt-3">
+            <div className="mt-3 flex flex-wrap gap-2">
               <WhatsAppButton size="sm" />
+              <EmailButton size="sm" label="Email us" />
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { Pi } from "@/components/Pi";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { BookingForm } from "@/components/BookingForm";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { EmailButton, WhatsAppButton } from "@/components/WhatsAppButton";
 import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
@@ -68,8 +68,9 @@ export default function ContactPage() {
               </li>
             </ul>
 
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap gap-3">
               <WhatsAppButton />
+              <EmailButton label="Email enquiry" />
             </div>
           </div>
 
