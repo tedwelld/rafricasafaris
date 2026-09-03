@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="mt-auto border-t border-line bg-surface">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Logo className="h-14" />
+          <Logo className="h-20 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-ink-soft">{siteConfig.tagline}</p>
           <div className="mt-5 flex gap-3">
             <SocialIcon href={siteConfig.socials.facebook} label="Facebook" icon="pi-facebook" />

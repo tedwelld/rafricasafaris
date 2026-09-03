@@ -2,9 +2,8 @@
 
 ## Logo / favicon
 
-- `favicon.svg` — site favicon (gold/green mark).
-- Optional: drop `logo.png` here for a badge logo; until then the header uses the
-  text wordmark in `src/components/Logo.tsx`.
+- `logo.jpg` — Rise Africa Safaris brand mark (header, footer, favicon, emails).
+- Optional legacy: `favicon.svg` (unused once `logo.jpg` is set in layout).
 
 ## Demo photography (`demo/`)
 

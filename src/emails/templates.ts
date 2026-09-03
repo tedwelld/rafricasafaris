@@ -13,7 +13,7 @@ function logoSvg(): string {
   if (!_logoSvg) {
     try {
       _logoSvg = fs.readFileSync(
-        path.join(process.cwd(), "public", "images", "logo.png"),
+        path.join(process.cwd(), "public", "images", "logo.jpg"),
         "base64",
       );
     } catch {
@@ -23,7 +23,7 @@ function logoSvg(): string {
   return _logoSvg;
 }
 
-const LOGO_HTML = `<img src="data:image/png;base64,${logoSvg()}" alt="${siteConfig.name}" style="height:32px;display:block;" />`;
+const LOGO_HTML = `<img src="data:image/jpeg;base64,${logoSvg()}" alt="${siteConfig.name}" style="height:48px;display:block;" />`;
 
 function esc(s = ""): string {
   return s

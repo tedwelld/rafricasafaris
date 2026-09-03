@@ -3,19 +3,14 @@
 import { cn } from "@/lib/cn";
 import { siteConfig } from "@/lib/siteConfig";
 
-/** Text wordmark for Rise Africa Safaris (swap for /images/logo.png when ready). */
+/** Rise Africa Safaris brand logo. */
 export function Logo({ className }: { className?: string }) {
   return (
-    <span
-      className={cn("inline-flex flex-col justify-center leading-tight", className)}
-      aria-label={siteConfig.name}
-    >
-      <span className="font-serif text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-        Rise Africa
-      </span>
-      <span className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-dark">
-        Safaris
-      </span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/images/logo.jpg"
+      alt={siteConfig.name}
+      className={cn("h-full w-auto object-contain", className)}
+    />
   );
 }
