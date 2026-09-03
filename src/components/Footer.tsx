@@ -68,11 +68,8 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-line">
-        <Container className="flex flex-col items-center justify-between gap-2 py-5 text-xs text-ink-soft sm:flex-row">
+        <Container className="flex flex-col items-center justify-center py-5 text-xs text-ink-soft sm:flex-row">
           <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
-          <p className="font-medium text-foreground">
-            Site is powered by <span className="text-gold-dark">Amunike &amp; Tedwell</span>
-          </p>
         </Container>
       </div>
     </footer>
