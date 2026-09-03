@@ -20,7 +20,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-surface">
-      <Container className="flex h-24 items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+      <Container className="flex h-16 items-center justify-between gap-3 sm:h-20 lg:h-24 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         {/* Left: nav (desktop only) */}
         <nav className="hidden items-center gap-7 lg:flex">
           {siteConfig.navLeft.map((item) => (
@@ -39,8 +39,8 @@ export function Header() {
         </nav>
 
         {/* Center: logo */}
-        <Link href="/" className="flex justify-start lg:justify-center">
-          <Logo className="h-16 w-auto lg:h-20" />
+        <Link href="/" className="flex max-w-[40%] shrink justify-start lg:max-w-none lg:justify-center">
+          <Logo className="h-10 w-auto max-h-10 sm:h-12 sm:max-h-12 lg:h-20 lg:max-h-20" />
         </Link>
 
         {/* Right: nav (desktop) + cart + theme */}
