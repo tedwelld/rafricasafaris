@@ -274,7 +274,7 @@ export function ExploreView({ initialTab }: { initialTab: ExploreTab }) {
             </>
           )}
 
-          {/* Bokun widget */}
+          {/* Bokun experience embed */}
           <div className="rounded-2xl bg-muted p-6 sm:p-10">
             <SectionHeading
               align="left"
@@ -283,8 +283,16 @@ export function ExploreView({ initialTab }: { initialTab: ExploreTab }) {
               description="Check live availability and secure your spot through our trusted booking partner."
             />
             <div className="mt-6">
-              <BokunWidget type="list" bokunId={siteConfig.bokunFeaturedListId} />
+              <BokunWidget
+                type="experience"
+                bokunId={siteConfig.bokunFeaturedExperienceId}
+              />
             </div>
+            {siteConfig.bokunFeaturedListId ? (
+              <div className="mt-8">
+                <BokunWidget type="list" bokunId={siteConfig.bokunFeaturedListId} />
+              </div>
+            ) : null}
           </div>
         </div>
       )}

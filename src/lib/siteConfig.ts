@@ -19,8 +19,13 @@ export const siteConfig = {
 
   bokunChannelUUID:
     process.env.NEXT_PUBLIC_BOKUN_CHANNEL_UUID ??
-    "00000000-0000-0000-0000-000000000000",
-  bokunFeaturedListId: process.env.NEXT_PUBLIC_BOKUN_FEATURED_LIST_ID ?? "",
+    "c9a54988-3ddc-4447-83f5-8f17db125c37",
+  /** Bokun product-list id for featured / explore list widgets. */
+  bokunFeaturedListId: process.env.NEXT_PUBLIC_BOKUN_FEATURED_LIST_ID ?? "146387",
+  /** Bokun experience id for the Explore page experience embed. */
+  bokunFeaturedExperienceId:
+    process.env.NEXT_PUBLIC_BOKUN_FEATURED_EXPERIENCE_ID ?? "1284030",
+  /** Default currency for Bokun pricing queries. */
   bokunDefaultCurrency: process.env.NEXT_PUBLIC_BOKUN_DEFAULT_CURRENCY ?? "USD",
 
   socials: {

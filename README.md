@@ -55,11 +55,11 @@ See [.env.example](.env.example). For **Bókun widgets** you only need:
 | Var | Purpose |
 |-----|---------|
 | `NEXT_PUBLIC_BOKUN_CHANNEL_UUID` | Bókun booking channel UUID (enables the widgets) |
-| `NEXT_PUBLIC_BOKUN_FEATURED_LIST_ID` | Optional product-list id for featured tours |
+| `NEXT_PUBLIC_BOKUN_FEATURED_LIST_ID` | Product-list id for list widgets |
+| `NEXT_PUBLIC_BOKUN_FEATURED_EXPERIENCE_ID` | Experience id for Explore page embed |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp business number, E.164 digits only |
 | `SMTP_*` / `EMAIL_FROM` / `BOOKING_INBOX` | Email enquiry flow |
-
-REST API keys (`BOKUN_ACCESS_KEY`, etc.) are optional and not required for widget booking.
+| `BOKUN_ACCESS_KEY` / `BOKUN_SECRET_KEY` / `BOKUN_OCTO_KEY` | Server-side API (optional for widgets) |
 
 ## The three booking flows
 
