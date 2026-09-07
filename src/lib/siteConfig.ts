@@ -29,10 +29,8 @@ export const siteConfig = {
   bokunDefaultCurrency: process.env.NEXT_PUBLIC_BOKUN_DEFAULT_CURRENCY ?? "USD",
 
   socials: {
-    facebook: "https://facebook.com/",
-    instagram: "https://instagram.com/",
-    twitter: "https://twitter.com/",
-    linkedin: "https://linkedin.com/",
+    facebook: "https://www.facebook.com/profile.php?id=100064289132386",
+    instagram: "https://www.instagram.com/bless3dgundo/",
   },
 
   nav: [

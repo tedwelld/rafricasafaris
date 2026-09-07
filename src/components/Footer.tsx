@@ -16,8 +16,6 @@ export function Footer() {
           <div className="mt-5 flex gap-3">
             <SocialIcon href={siteConfig.socials.facebook} label="Facebook" icon="pi-facebook" />
             <SocialIcon href={siteConfig.socials.instagram} label="Instagram" icon="pi-instagram" />
-            <SocialIcon href={siteConfig.socials.twitter} label="Twitter" icon="pi-twitter" />
-            <SocialIcon href={siteConfig.socials.linkedin} label="LinkedIn" icon="pi-linkedin" />
           </div>
         </div>
 
