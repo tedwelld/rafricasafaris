@@ -1,9 +1,44 @@
+import { readFileSync } from "fs";
+import { join } from "path";
 import nodemailer from "nodemailer";
 
-function requireEnv(name: string): string {
-  const v = process.env[name];
-  if (!v) throw new Error(`Missing ${name} in .env.local`);
-  return v;
+type EmailSettings = {
+  EmailHost?: string;
+  EmailUsername?: string;
+  EmailPassword?: string;
+  EmailFrom?: string;
+  BookingInbox?: string;
+  SmtpPort?: number;
+  SmtpSecure?: boolean;
+};
+
+function loadAppSettingsEmail(): EmailSettings {
+  try {
+    const raw = readFileSync(join(process.cwd(), "appsettings.json"), "utf8");
+    const json = JSON.parse(raw) as { emailSettings?: EmailSettings };
+    return json.emailSettings ?? {};
+  } catch {
+    return {};
+  }
+}
+
+function mailConfig() {
+  const file = loadAppSettingsEmail();
+  return {
+    host: process.env.SMTP_HOST || file.EmailHost || "",
+    user: process.env.SMTP_USER || file.EmailUsername || "",
+    pass: process.env.SMTP_PASS || file.EmailPassword || "",
+    from: process.env.EMAIL_FROM || file.EmailFrom || "info@rafricasafaris.com",
+    inbox: process.env.BOOKING_INBOX || file.BookingInbox || "",
+    port: Number(process.env.SMTP_PORT ?? file.SmtpPort ?? 587),
+    secure:
+      process.env.SMTP_SECURE === "true" ||
+      file.SmtpSecure === true,
+  };
+}
+
+export function getBookingInbox(): string {
+  return mailConfig().inbox;
 }
 
 export type MailAttachment = {
@@ -14,7 +49,7 @@ export type MailAttachment = {
 };
 
 export function formatFromAddress(): string {
-  const from = process.env.EMAIL_FROM ?? "info@rafricasafaris.com";
+  const from = mailConfig().from;
   if (from.includes("<") && from.includes(">")) {
     return from;
   }
@@ -42,23 +77,22 @@ let _transporter: nodemailer.Transporter | null = null;
 
 function getTransporter() {
   if (!_transporter) {
-    const port = Number(process.env.SMTP_PORT ?? "587");
-    const secure = process.env.SMTP_SECURE === "true";
+    const { host, user, pass, port, secure } = mailConfig();
+    if (!host || !user || !pass) {
+      throw new Error("Missing SMTP settings in .env.local or appsettings.json");
+    }
 
     _transporter = nodemailer.createTransport({
-      host: requireEnv("SMTP_HOST"),
+      host,
       port,
       secure,
       requireTLS: port === 587 && !secure,
-      auth: {
-        user: requireEnv("SMTP_USER"),
-        pass: requireEnv("SMTP_PASS"),
-      },
+      auth: { user, pass },
       pool: true,
       maxConnections: 1,
       maxMessages: Infinity,
-      connectionTimeout: 10000,
-      greetingTimeout: 10000,
+      connectionTimeout: 15000,
+      greetingTimeout: 15000,
     });
   }
   return _transporter;

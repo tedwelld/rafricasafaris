@@ -8,7 +8,7 @@ export const siteConfig = {
   tagline: "Private African journeys with guides who live the bush every day.",
   description:
     "Rise Africa Safaris designs private game drives, river cruises and multi-country trips across Zimbabwe, Botswana, Namibia and Zambia. Plan with us on WhatsApp or email — we handle the rest.",
-  url: "https://www.rafricasafaris.com",
+  url: "https://rafricasafaris.com",
   locale: "en",
 
   email: "info@rafricasafaris.com",

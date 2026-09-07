@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { bookingSchema } from "@/lib/bookingSchema";
 import { internalLeadEmail, guestConfirmationEmail } from "@/emails/templates";
 import { createBookingRef, generateBookingPdf, makePdfAttachment } from "@/emails/booking-pdf";
-import { sendMail, type MailAttachment } from "@/lib/mail";
+import { getBookingInbox, sendMail, type MailAttachment } from "@/lib/mail";
 
 function cloneAttachment(attachment: MailAttachment): MailAttachment {
   return {
@@ -33,17 +33,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  if (!process.env.SMTP_HOST) {
-    console.error("Booking email not sent: SMTP_HOST is not set in .env.local");
-    return NextResponse.json(
-      { ok: false, error: "Email is not configured yet. Please use WhatsApp for now." },
-      { status: 503 },
-    );
-  }
-
-  const inbox = process.env.BOOKING_INBOX;
+  const inbox = getBookingInbox();
   if (!inbox) {
-    console.error("Booking email not sent: BOOKING_INBOX is not set in .env.local");
+    console.error("Booking email not sent: BOOKING_INBOX / appsettings emailSettings.BookingInbox missing");
     return NextResponse.json(
       { ok: false, error: "Email is not configured yet. Please use WhatsApp for now." },
       { status: 503 },
