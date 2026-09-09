@@ -29,16 +29,6 @@ export function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/site-map" className="text-ink-soft hover:text-gold-dark">
-                Site map
-              </Link>
-            </li>
-            <li>
-              <a href="/sitemap.xml" className="text-ink-soft hover:text-gold-dark">
-                XML sitemap
-              </a>
-            </li>
           </ul>
         </div>
 
